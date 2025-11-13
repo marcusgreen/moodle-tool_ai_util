@@ -41,7 +41,7 @@ class hook_callbacks {
         global $DB;
 
         // Get the idmteacher role
-        $idmteacherrole = $DB->get_record('role', ['shortname' => 'editingteacher']);
+        $teacherrole = $DB->get_record('role', ['shortname' => 'editingteacher']);
         $userid = $userinfoextend->get_userid();
         $user = \core_user::get_user($userid);
 
@@ -62,7 +62,7 @@ class hook_callbacks {
         }
 
         // Check if user has idmteacher role assignment
-        if ($idmteacherrole && user_has_role_assignment($userid, $idmteacherrole->id, \context_system::instance()->id)) {
+        if ($teacherrole && user_has_role_assignment($userid, $teacherrole->id, \context_system::instance()->id)) {
             $userinfoextend->set_default_role(userinfo::ROLE_EXTENDED);
         } else {
             // Default to basic role if no other conditions are met
